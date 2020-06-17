@@ -26,7 +26,7 @@ namespace CryptoForms
             InitializeComponent();
         }
 
-        //Método de evento para o clique no botão "Descriptografar"
+        //Método de evento para o clique no botão "Criptografar"
         private void Encrypt_Click(object sender, EventArgs e)
         {
             //Intância para escrever em um arquivo
