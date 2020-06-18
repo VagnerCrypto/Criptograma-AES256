@@ -1,0 +1,10 @@
+C:\Users\vagner_lima\source\repos\CryptoForms\bin\Debug\CryptoForms.exe.config
+C:\Users\vagner_lima\source\repos\CryptoForms\bin\Debug\CryptoForms.exe
+C:\Users\vagner_lima\source\repos\CryptoForms\bin\Debug\CryptoForms.pdb
+C:\Users\vagner_lima\source\repos\CryptoForms\obj\Debug\Cryptograma.csprojAssemblyReference.cache
+C:\Users\vagner_lima\source\repos\CryptoForms\obj\Debug\CryptoForms.AES256.resources
+C:\Users\vagner_lima\source\repos\CryptoForms\obj\Debug\CryptoForms.Properties.Resources.resources
+C:\Users\vagner_lima\source\repos\CryptoForms\obj\Debug\Cryptograma.csproj.GenerateResource.cache
+C:\Users\vagner_lima\source\repos\CryptoForms\obj\Debug\Cryptograma.csproj.CoreCompileInputs.cache
+C:\Users\vagner_lima\source\repos\CryptoForms\obj\Debug\CryptoForms.exe
+C:\Users\vagner_lima\source\repos\CryptoForms\obj\Debug\CryptoForms.pdb
