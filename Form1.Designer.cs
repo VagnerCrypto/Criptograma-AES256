@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AES256));
             this.plain_text = new System.Windows.Forms.TextBox();
-            this.CipherText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,6 +41,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.TextHash = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.CipherText = new System.Windows.Forms.RichTextBox();
+            this.CaracteresPlain = new System.Windows.Forms.Label();
+            this.CaracteresCipher = new System.Windows.Forms.Label();
+            this.CaracteresHash = new System.Windows.Forms.Label();
+            this.HashHexa = new System.Windows.Forms.Label();
+            this.CaracteresHexa = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // plain_text
@@ -52,16 +57,7 @@
             this.plain_text.Name = "plain_text";
             this.plain_text.Size = new System.Drawing.Size(289, 63);
             this.plain_text.TabIndex = 0;
-            // 
-            // CipherText
-            // 
-            this.CipherText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CipherText.Location = new System.Drawing.Point(464, 223);
-            this.CipherText.Multiline = true;
-            this.CipherText.Name = "CipherText";
-            this.CipherText.ReadOnly = true;
-            this.CipherText.Size = new System.Drawing.Size(285, 63);
-            this.CipherText.TabIndex = 1;
+            this.plain_text.TextChanged += new System.EventHandler(this.plain_text_TextChanged);
             // 
             // label1
             // 
@@ -101,7 +97,7 @@
             this.Encrypt.BackColor = System.Drawing.Color.Red;
             this.Encrypt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Encrypt.ForeColor = System.Drawing.Color.MediumBlue;
-            this.Encrypt.Location = new System.Drawing.Point(88, 301);
+            this.Encrypt.Location = new System.Drawing.Point(89, 327);
             this.Encrypt.Name = "Encrypt";
             this.Encrypt.Size = new System.Drawing.Size(219, 61);
             this.Encrypt.TabIndex = 5;
@@ -114,7 +110,7 @@
             this.Decrypt.BackColor = System.Drawing.Color.MediumSpringGreen;
             this.Decrypt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Decrypt.ForeColor = System.Drawing.Color.MediumBlue;
-            this.Decrypt.Location = new System.Drawing.Point(507, 301);
+            this.Decrypt.Location = new System.Drawing.Point(512, 327);
             this.Decrypt.Name = "Decrypt";
             this.Decrypt.Size = new System.Drawing.Size(203, 60);
             this.Decrypt.TabIndex = 6;
@@ -139,7 +135,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label4.Location = new System.Drawing.Point(189, 94);
+            this.label4.Location = new System.Drawing.Point(202, 95);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(387, 24);
             this.label4.TabIndex = 8;
@@ -177,6 +173,7 @@
             this.TextHash.Name = "TextHash";
             this.TextHash.Size = new System.Drawing.Size(653, 25);
             this.TextHash.TabIndex = 11;
+            this.TextHash.TextChanged += new System.EventHandler(this.TextHash_TextChanged);
             // 
             // label6
             // 
@@ -189,12 +186,74 @@
             this.label6.TabIndex = 12;
             this.label6.Text = "SHA-256";
             // 
+            // CipherText
+            // 
+            this.CipherText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CipherText.Location = new System.Drawing.Point(464, 223);
+            this.CipherText.Name = "CipherText";
+            this.CipherText.ReadOnly = true;
+            this.CipherText.Size = new System.Drawing.Size(281, 63);
+            this.CipherText.TabIndex = 13;
+            this.CipherText.Text = "";
+            this.CipherText.TextChanged += new System.EventHandler(this.CipherText_TextChanged);
+            // 
+            // CaracteresPlain
+            // 
+            this.CaracteresPlain.AutoSize = true;
+            this.CaracteresPlain.Location = new System.Drawing.Point(60, 293);
+            this.CaracteresPlain.Name = "CaracteresPlain";
+            this.CaracteresPlain.Size = new System.Drawing.Size(61, 13);
+            this.CaracteresPlain.TabIndex = 14;
+            this.CaracteresPlain.Text = "Caracteres:";
+            // 
+            // CaracteresCipher
+            // 
+            this.CaracteresCipher.AutoSize = true;
+            this.CaracteresCipher.Location = new System.Drawing.Point(472, 293);
+            this.CaracteresCipher.Name = "CaracteresCipher";
+            this.CaracteresCipher.Size = new System.Drawing.Size(61, 13);
+            this.CaracteresCipher.TabIndex = 15;
+            this.CaracteresCipher.Text = "Caracteres:";
+            // 
+            // CaracteresHash
+            // 
+            this.CaracteresHash.AutoSize = true;
+            this.CaracteresHash.Location = new System.Drawing.Point(106, 480);
+            this.CaracteresHash.Name = "CaracteresHash";
+            this.CaracteresHash.Size = new System.Drawing.Size(61, 13);
+            this.CaracteresHash.TabIndex = 16;
+            this.CaracteresHash.Text = "Caracteres:";
+            // 
+            // HashHexa
+            // 
+            this.HashHexa.AutoSize = true;
+            this.HashHexa.Location = new System.Drawing.Point(106, 496);
+            this.HashHexa.Name = "HashHexa";
+            this.HashHexa.Size = new System.Drawing.Size(53, 13);
+            this.HashHexa.TabIndex = 17;
+            this.HashHexa.Text = "Em Hexa:";
+            // 
+            // CaracteresHexa
+            // 
+            this.CaracteresHexa.AutoSize = true;
+            this.CaracteresHexa.Location = new System.Drawing.Point(605, 293);
+            this.CaracteresHexa.Name = "CaracteresHexa";
+            this.CaracteresHexa.Size = new System.Drawing.Size(53, 13);
+            this.CaracteresHexa.TabIndex = 18;
+            this.CaracteresHexa.Text = "Em Hexa:";
+            // 
             // AES256
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(800, 572);
+            this.Controls.Add(this.CaracteresHexa);
+            this.Controls.Add(this.HashHexa);
+            this.Controls.Add(this.CaracteresHash);
+            this.Controls.Add(this.CaracteresCipher);
+            this.Controls.Add(this.CaracteresPlain);
+            this.Controls.Add(this.CipherText);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.TextHash);
             this.Controls.Add(this.label5);
@@ -206,7 +265,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.CipherText);
             this.Controls.Add(this.plain_text);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AES256";
@@ -220,7 +278,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox plain_text;
-        private System.Windows.Forms.TextBox CipherText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -232,6 +289,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox TextHash;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.RichTextBox CipherText;
+        private System.Windows.Forms.Label CaracteresPlain;
+        private System.Windows.Forms.Label CaracteresCipher;
+        private System.Windows.Forms.Label CaracteresHash;
+        private System.Windows.Forms.Label HashHexa;
+        private System.Windows.Forms.Label CaracteresHexa;
     }
 }
 

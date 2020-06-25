@@ -21,6 +21,7 @@ namespace CryptoForms
         private static byte[] cipher;
         private static byte[] key;
         private static byte[] iv;
+        private bool control = false;
         public AES256()
         {
             InitializeComponent();
@@ -34,10 +35,11 @@ namespace CryptoForms
 
             //Recebe o que foi digitado na caixa de texto
             string text = plain_text.Text;
-           
+            control = false;
             //Limpa as caixas
             CipherText.Clear();
             TextHash.Clear();
+            this.Encrypt.Enabled = false;
 
             //Verifica se a caixa de texto foi preenchida e se está preenhcida só com caracteres de espaço
             if(!String.IsNullOrEmpty(text) && !String.IsNullOrWhiteSpace(text))
@@ -111,10 +113,7 @@ namespace CryptoForms
 
             //Desativa o botão "Descriptografar"
             this.Decrypt.Enabled = false;
-
-            //Ativa a caixa de texto do dado cifrado
-            this.CipherText.Enabled = true;
-
+           
             //Desativa a caixa de texto do Hash
             this.TextHash.Enabled = false;
         }
@@ -122,6 +121,8 @@ namespace CryptoForms
         //Método de evento para o clique no botão "Descriptografar"
         private void Decrypt_Click(object sender, EventArgs e)
         {
+            this.Encrypt.Enabled = true;
+            control = true;
             //Verifica se a caixa do texto cifrado não está vazia
             if (cipher.Length != 0)
             {
@@ -156,6 +157,8 @@ namespace CryptoForms
 
             //Foca o mouse na primeira caixa
             plain_text.Focus();
+
+            this.Encrypt.Enabled = true;
         }
 
         //Método de evento para o clicar no botão "Sair"
@@ -163,6 +166,45 @@ namespace CryptoForms
         {
             //Fecha o app
             Application.Exit();
+        }
+
+        private void CipherText_TextChanged(object sender, EventArgs e)
+        {
+           
+            int len = CipherText.TextLength;
+
+            CaracteresCipher.Text = "Caracteres: " +len.ToString();
+
+
+            int len2 = CipherText.TextLength/2;
+
+            if (!control)
+                CaracteresHexa.Text = "Em Hexa: " + len2.ToString();
+            else
+                CaracteresHexa.Text = "Em Hexa:";
+
+        }
+
+        private void plain_text_TextChanged(object sender, EventArgs e)
+        {
+
+            int len = plain_text.TextLength;
+
+            CaracteresPlain.Text = "Caracteres: " + len.ToString();
+
+        }
+
+        private void TextHash_TextChanged(object sender, EventArgs e)
+        {
+
+            int len = TextHash.TextLength;
+
+            CaracteresHash.Text = "Caracteres: " + len.ToString();
+
+
+            int len2 = TextHash.TextLength/2;
+
+            HashHexa.Text = "Em Hexa: " + len2.ToString();
         }
     }
 }
