@@ -61,6 +61,8 @@ namespace CryptoForms
                         //Envia o texto cifrado para o array de bytes global
                         cipher = AES.Encrypt(text, key, iv);
 
+                        if (cipher == null)
+                            this.Encrypt.Enabled = true;
                         //Percorre todo o texto cifrado
                         //Envia cada caractere cifrado para a caixa de texto em Hexadecimal
                         for (int i = 0; i < cipher.Length; i++)
@@ -98,12 +100,16 @@ namespace CryptoForms
                 TextHash.Clear();
 
                 plain_text.Focus();
+
+                this.Encrypt.Enabled = true;
             }
         }
 
         //Controla o fluxo inicial do app, com um start
         private void AES256_Load(object sender, EventArgs e)
         {
+
+      
             //O app abre centralizado
             this.CenterToScreen();
 
@@ -181,7 +187,7 @@ namespace CryptoForms
             if (!control)
                 CaracteresHexa.Text = "Em Hexa: " + len2.ToString();
             else
-                CaracteresHexa.Text = "Em Hexa:";
+                CaracteresHexa.Text = "Em Hexa: " +0;
 
         }
 
@@ -205,6 +211,11 @@ namespace CryptoForms
             int len2 = TextHash.TextLength/2;
 
             HashHexa.Text = "Em Hexa: " + len2.ToString();
+        }
+
+        private void Data_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
