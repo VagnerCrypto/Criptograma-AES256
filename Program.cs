@@ -17,6 +17,8 @@ namespace CryptoForms
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new AES256());
+
+
         }
     }
 }
