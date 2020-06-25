@@ -174,6 +174,7 @@ namespace CryptoForms
             Application.Exit();
         }
 
+        //Contagem de caracteres
         private void CipherText_TextChanged(object sender, EventArgs e)
         {
            
