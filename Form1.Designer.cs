@@ -146,7 +146,7 @@
             this.Exit.BackColor = System.Drawing.Color.LightSteelBlue;
             this.Exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Exit.ForeColor = System.Drawing.Color.MediumBlue;
-            this.Exit.Location = new System.Drawing.Point(276, 496);
+            this.Exit.Location = new System.Drawing.Point(276, 527);
             this.Exit.Name = "Exit";
             this.Exit.Size = new System.Drawing.Size(257, 64);
             this.Exit.TabIndex = 9;
@@ -247,7 +247,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(800, 572);
+            this.ClientSize = new System.Drawing.Size(820, 603);
             this.Controls.Add(this.CaracteresHexa);
             this.Controls.Add(this.HashHexa);
             this.Controls.Add(this.CaracteresHash);
